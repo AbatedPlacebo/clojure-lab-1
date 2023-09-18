@@ -9,16 +9,14 @@
       (combine_letters x (rest y))
       (cons (str x (first y)) (combine_letters x (rest y))))))
 
-; '(1 2 3) '(3 4 5) -> '(1 2 3 3 4 5))
-
 (defn concat_lists_of_combinations [x y]
   (concat (combine_letters (first x) y) (if (empty? (rest x))
-                                 nil
-                                 (concat_lists_of_combinations (rest x) y))))
+                                          nil
+                                          (concat_lists_of_combinations (rest x) y))))
 (defn iterate_n_combinations [x y n]
   (concat (if (= n 1)
-                 x
-                 (concat (iterate_n_combinations (concat_lists_of_combinations x y) y (dec n)))) nil))
+            x
+            (concat (iterate_n_combinations (concat_lists_of_combinations x y) y (dec n)))) nil))
 
 (defn alphabet_combinations [x n]
   (iterate_n_combinations x x n))
