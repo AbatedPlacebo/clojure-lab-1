@@ -1,22 +1,26 @@
 (ns clojure-lab-1.core)
 
-(defn testfn [x y]
+(defn combine_letters [x y]
   (if (empty? (rest y))
-    (if (= x (first y))
+    (if (= (str (last x)) (str (first (first y))))
       nil
       (cons (str x (first y)) nil))
-    (if (= x (first y))
-      (testfn x (rest y))
-      (cons (str x (first y)) (testfn x (rest y))))))
-
+    (if (= (str (last x)) (str (first (first y))))
+      (combine_letters x (rest y))
+      (cons (str x (first y)) (combine_letters x (rest y))))))
 
 ; '(1 2 3) '(3 4 5) -> '(1 2 3 3 4 5))
 
-(defn func1 [x y]
-  (concat (testfn (first x) y) (if (empty? (rest x))
+(defn concat_lists_of_combinations [x y]
+  (concat (combine_letters (first x) y) (if (empty? (rest x))
                                  nil
-                                 (func1 (rest x) y))))
-(defn func [x]
-  (func1 x x))
+                                 (concat_lists_of_combinations (rest x) y))))
+(defn iterate_n_combinations [x y n]
+  (concat (if (= n 1)
+                 x
+                 (concat (iterate_n_combinations (concat_lists_of_combinations x y) y (dec n)))) nil))
 
-(println (func (list "a" "b" "c" "d")))
+(defn alphabet_combinations [x n]
+  (iterate_n_combinations x x n))
+
+(println (alphabet_combinations (list "a" "b" "c") 10))
