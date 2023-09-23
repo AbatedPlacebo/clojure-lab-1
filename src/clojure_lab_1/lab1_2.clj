@@ -1,4 +1,4 @@
-(ns clojure-lab-1.core1)
+(ns clojure-lab-1.lab1_2)
 
 (def combinations_for_x
   (fn [lst1 lst2]
