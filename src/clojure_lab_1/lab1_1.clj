@@ -21,4 +21,8 @@
 (defn alphabet_combinations [x n]
   (iterate_n_combinations x x n))
 
-(println (alphabet_combinations (list "a" "b" "c") 10))
+(println (alphabet_combinations (list "a" "b" "c") 3))
+(println (alphabet_combinations (list "a" "b" "c" "d") 3))
+(println (alphabet_combinations (list "a" "b" ) 2))
+
+;; recur 1.2
