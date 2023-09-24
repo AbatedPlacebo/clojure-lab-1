@@ -1,4 +1,4 @@
-(ns clojure-lab-1.lab1_1)
+(ns clojure-lab-1.lab1-1)
 
 (defn combine_letters [x y]
   (if (empty? (rest y))
