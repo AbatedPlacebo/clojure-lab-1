@@ -1,5 +1,16 @@
 (ns clojure-lab-1.lab1-2)
 
+(def my-concat 
+  (fn [lst1 lst2] 
+    (loop [y lst2
+           acc lst1]
+      (if (empty? y)
+       (reverse acc) 
+        (recur (rest y) (cons (first y) acc)))
+      )
+    )
+  )
+
 (def combinations_for_x
   (fn [lst1 lst2]
     (loop [x lst1
@@ -18,7 +29,7 @@
            acc nil]
       (if (empty? (first x))
         acc
-        (recur (rest x) y (concat acc (combinations_for_x x y)))))))
+        (recur (rest x) y (my-concat acc (combinations_for_x x y)))))))
 
 (def alphabet_combinations
   (fn [lst n]
@@ -31,4 +42,4 @@
         (recur acc y (dec cnt) (concat_all_x_combs acc y))))))
 
 (println (alphabet_combinations (list "a" "b" "c" "d") 3))
-(println (alphabet_combinations (list "a" "b" "c") 4))
+(println (alphabet_combinations (list "a" "b" "c" ) 15))
