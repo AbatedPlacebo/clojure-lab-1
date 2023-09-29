@@ -2,11 +2,11 @@
 
 (def my-concat 
   (fn [lst1 lst2] 
-    (loop [y lst2
-           acc lst1]
-      (if (empty? y)
-       (reverse acc) 
-        (recur (rest y) (cons (first y) acc)))
+    (loop [x (reverse lst1)
+           acc lst2]
+      (if (empty? x)
+        acc
+        (recur (rest x) (cons (first x) acc)))
       )
     )
   )
@@ -41,5 +41,8 @@
         acc
         (recur acc y (dec cnt) (concat_all_x_combs acc y))))))
 
-(println (alphabet_combinations (list "a" "b" "c" "d") 3))
-(println (alphabet_combinations (list "a" "b" "c" ) 15))
+
+(alphabet_combinations (list "a" "b" "c" "d") 3)
+(alphabet_combinations (list "a" "b" "c" ) 5)
+(alphabet_combinations (list "a" "b" "c" "d") 6)
+(alphabet_combinations (list "a" "b" "c") 15)
